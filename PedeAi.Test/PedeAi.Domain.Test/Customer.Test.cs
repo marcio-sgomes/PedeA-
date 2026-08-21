@@ -1,4 +1,5 @@
 ﻿using PedeAi.Domain.Entities;
+using PedeAi.Domain.Enums;
 using PedeAi.Domain.Exceptions;
 
 namespace PedeAi.Test.PedeAi.Domain.Test
@@ -11,7 +12,7 @@ namespace PedeAi.Test.PedeAi.Domain.Test
             var name = "John Doe";
             var email = "john.doe@example.com";
 
-            var customer = new Customer(name, email);
+            var customer = new Customer(name, email, Status.Active);
 
             Assert.NotNull(customer);
             Assert.True(customer.Id != Guid.Empty);
@@ -27,7 +28,7 @@ namespace PedeAi.Test.PedeAi.Domain.Test
             var name = "";
             var email = "john.doe@example.com";
 
-            var exception = Assert.Throws<BusinessRulesValidationException>(() => new Customer(name, email));
+            var exception = Assert.Throws<BusinessRulesValidationException>(() => new Customer(name, email, Status.Active));
             
             Assert.Equal("Name should be between 3 and 100 characters long. ", exception.Message);
         }
@@ -38,7 +39,7 @@ namespace PedeAi.Test.PedeAi.Domain.Test
             var name = "John Doe";
             var email = "invalid-email";
 
-            var exception = Assert.Throws<BusinessRulesValidationException>(() => new Customer(name, email));
+            var exception = Assert.Throws<BusinessRulesValidationException>(() => new Customer(name, email, Status.Active));
 
             Assert.Equal("Invalid email format.", exception.Message);
         }
@@ -50,13 +51,10 @@ namespace PedeAi.Test.PedeAi.Domain.Test
             var name = "John Doe";
             var email = "john.doe@example.com";
 
-            var customer = new Customer(name, email);
+            var customer = new Customer(name, email, Status.Active);
 
             var oldValue = customer.UpdatedAt;
             customer.SetUpdatedAt();
-
-            Console.WriteLine($"Old UpdatedAt: {oldValue}");
-            Console.WriteLine($"New UpdatedAt: {customer.UpdatedAt}");
 
             Assert.True(oldValue < customer.UpdatedAt);
         }
