@@ -9,15 +9,13 @@ namespace PedeAi.Domain.Entities
         public string Email { get; private set; }
         public Status Status { get; private set; }
 
-        private Customer() { }
-
-        public Customer(string name, string email) : base()
+        public Customer(string name, string email, Status status) : base()
         {
             Name = name;
             Email = email;
-            Status = Status.Active;
+            Status = status;
 
-            AddRule(new CustomerBusinesRules(name, email));
+            AddRule(new CustomerBusinesRules(name, email, status));
             CheckBusinessRules();
         }
     }

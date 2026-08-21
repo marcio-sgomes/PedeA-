@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="PedeAi.Test/PedeAi.Test.csproj" Id="eeb58f49-0491-4eac-8009-945eb5a2a492" />
   <Project Path="src/PedeAi.Domain/PedeAi.Domain.csproj" />
+  <Project Path="src/PedeAi.Infrastructure/PedeAi.Infrastructure.csproj" Id="f4d1eeca-12d1-42d2-81b6-460173093a65" />
 </Solution>
