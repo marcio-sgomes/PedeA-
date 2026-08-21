@@ -3,19 +3,19 @@
     public abstract class BaseEntity : BaseBusinessEntity
     {
         public Guid Id { get; protected init; }
-        public DateTime CreatedAt { get; protected init; }
-        public DateTime UpdatedAt { get; protected set; }
+        public DateTimeOffset CreatedAt { get; protected init; }
+        public DateTimeOffset UpdatedAt { get; protected set; }
 
         protected BaseEntity()
         {
             Id = Guid.NewGuid();
-            CreatedAt = DateTime.UtcNow;
+            CreatedAt = DateTimeOffset.UtcNow;
             UpdatedAt = CreatedAt;
         }
 
         public void SetUpdatedAt()
         {
-            UpdatedAt = DateTime.UtcNow;
+            UpdatedAt = DateTimeOffset.UtcNow;
         }
     }
 }
